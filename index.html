@@ -55,61 +55,129 @@
         }
       }
 
-      /* Custom CSS for Navbar */
-    .nav-item {
-      position: relative;
-      padding-bottom: 10px;
-      margin-right: 20px;
-    }
+      
+    /* Basic Styles for Navbar */
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  
+}
 
-    .nav-item:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 3px;
-      background-color: #FF00FF;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
-    }
+.nav-item {
+  position: relative;
+  padding-bottom: 10px;
+  margin-right: 20px;
+}
 
-    .nav-item:hover:after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
+.nav-item:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #FF00FF;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
 
-    .switch-container {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
+.nav-item:hover:after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
-    .dark-mode-toggle {
-      display: inline-block;
-      width: 40px;
-      height: 20px;
-      border-radius: 999px;
-      background-color: #555;
-      position: relative;
-      cursor: pointer;
-    }
+.switch-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .toggle-circle {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 16px;
-      height: 16px;
-      background-color: #FF00FF;
-      border-radius: 999px;
-      transition: all 0.3s ease;
-    }
+.dark-mode-toggle {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  border-radius: 999px;
+  background-color: #555;
+  position: relative;
+  cursor: pointer;
+}
 
-    .dark-mode-toggle.active .toggle-circle {
-      transform: translateX(20px);
-    }
+.toggle-circle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #FF00FF;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle.active .toggle-circle {
+  transform: translateX(20px);
+}
+
+/* Dark Mode Switch Styles */
+.dark-mode-text {
+  font-size: 14px;
+  color: white;
+}
+
+.contact-btn {
+  padding: 8px 16px;
+  background-color: #FF00FF;
+  color: white;
+  border-radius: 999px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #ff33ff;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .switch-container {
+    margin-top: 10px;
+  }
+
+  .contact-btn {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 10px;
+  }
+
+  .nav-item {
+    padding-bottom: 5px;
+  }
+
+  .dark-mode-text {
+    font-size: 12px;
+  }
+
+  .contact-btn {
+    padding: 6px 12px;
+  }
+}
+
 
     /* Dark Mode Switch Styles */
     .dark-mode-text {
@@ -403,197 +471,345 @@
     </section>
 
     <!-- Education & Certification Section -->
-    <section id="education" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans  slide-up">
-      <h2 class="text-4xl font-bold text-center mb-12">
-        Education & Certifications
-      </h2>
-      <div class="max-w-4xl mx-auto">
-        <div class="mb-6">
-          <h3 class="text-2xl font-semibold">
-            Master of Computer Application (MCA)
-          </h3>
-          <p class="text-lg">
-            Shri Vaishnav Institute of Management and Science,Indore (RGPV)
-            <span class="font-bold text-yellow-50">2022-2024</span>
-          </p>
-        </div>
-        <div class="mb-6">
-          <h3 class="text-2xl font-semibold">Bachelor Of Computer Application</h3>
-          <p class="text-lg">Christian Eminent College, Indore  (DAVV)</p>
-        </div>
-        <div class="mb-6">
-          <h3 class="text-2xl font-semibold ">Certifications</h3>
-          <ul class="list-disc list-inside">
-            <li>Edunet Foundation Virtual Internship (AI & Cloud)</li>
-            <li>IBM Cloud Developer Certification</li>
-            <li>AICTE Certified Internship Program</li>
-            <li>MERN Stack Certified from Crush IT Techno</li>
-            <li>WEB Development  Infosys Spring Board/li>
-            <li>Python with AI from Infosys Spring Board</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<section id="education" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans slide-up">
+  <h2 class="text-4xl font-bold text-center mb-12">
+    Education & Certifications
+  </h2>
+
+  <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+    <!-- Master of Computer Application (MCA) Card -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h3 class="text-2xl font-semibold mb-2">
+        Master of Computer Application (MCA)
+      </h3>
+      <p class="text-lg">
+        Shri Vaishnav Institute of Management and Science, Indore (RGPV)
+      </p>
+      <p class="text-yellow-50 font-bold">2022-2024</p>
+    </div>
+
+    <!-- Bachelor of Computer Application (BCA) Card -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h3 class="text-2xl font-semibold mb-2">
+        Bachelor Of Computer Application (BCA)
+      </h3>
+      <p class="text-lg">
+        Christian Eminent College, Indore (DAVV)
+      </p>
+    </div>
+
+    <!-- Certifications Card -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg sm:col-span-2">
+      <h3 class="text-2xl font-semibold mb-4">Certifications</h3>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Edunet Foundation Virtual Internship (AI & Cloud)</li>
+        <li>IBM Cloud Developer Certification</li>
+        <li>AICTE Certified Internship Program</li>
+        <li>MERN Stack Certified from Crush IT Techno</li>
+        <li><a href="#" class="text-purple-400 hover:underline">Web Development - Infosys Springboard</a></li>
+        <li><a href="#" class="text-purple-400 hover:underline">Python with AI - Infosys Springboard</a></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- Technical Skills Section -->
-    <section id="skills" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans  slide-up">
-      <h2 class="text-4xl font-bold text-center mb-12">Technical Skills</h2>
-      <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Skills with logos -->
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-            class="h-10 w-10"
-            alt="JavaScript Logo"
-            loading="lazy"
-          />
-          <span class="text-xl">JavaScript</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-            class="h-10 w-10"
-            alt="Python Logo"
-            loading="lazy"
-          />
-          <span class="text-xl">Python</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-            class="h-10 w-10"
-            alt="React Logo"
-          />
-          <span class="text-xl">React</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-            class="h-10 w-10"
-            alt="Node.js Logo"
-            loading="lazy"
-          />
-          <span class="text-xl">Node.js</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-            class="h-10 w-10"
-            alt="MongoDB Logo"
-            loading="lazy"
-          />
-          <span class="text-xl">MongoDB</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
-            class="h-10 w-10"
-            alt="Django Logo"
-            loading="lazy"
-          />
-          <span class="text-xl">Django</span>
-        </div>
-        
-          <div class="flex space-x-4 mt-8">
-            <!-- HTML5 -->
-            <i class="devicon-html5-plain-wordmark text-6xl text-red-500"></i>
-            
-            <!-- CSS3 -->
-            <i class="devicon-css3-plain-wordmark text-6xl text-blue-600"></i>
-            
-           
-          </div>
-          
-      </div>
-    </section>
-
-      <!-- Blog Section -->
-  <section id="blog" class="py-16">
-    <div class="container blog-container">
-      <h2 class="text-4xl font-bold text-center mb-12">My Blog</h2>
-
-      <!-- Form to Add New Blog -->
-      <div class="bg-gray-800 p-6 rounded-lg mb-6">
-        <h3 class="text-2xl mb-4">Create a New Blog</h3>
-        <form id="blogForm">
-          <input type="text" id="blogTitle" class="w-full p-2 mb-4 text-black" placeholder="Blog Title" required />
-          <textarea id="blogContent" class="w-full p-2 text-black" rows="4" placeholder="Write your blog here..." required></textarea>
-          <button type="submit" class="submit-btn mt-4">Post Blog</button>
-        </form>
-      </div>
-
-      <!-- Blog Post List -->
-      <div id="blogPosts">
-        <!-- Blog card will appear here dynamically -->
-      </div>
+    <!-- Technical Skills Section -->
+<section id="skills" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans slide-up">
+  <h2 class="text-4xl font-bold text-center mb-12">Technical Skills</h2>
+  <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Skills with logos -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="JavaScript Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">JavaScript</span>
     </div>
-  </section>
 
-  <script>
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Python Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Python</span>
+    </div>
+
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="React Logo"
+      />
+      <span class="text-xl">React</span>
+    </div>
+
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Node.js Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Node.js</span>
+    </div>
+
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="MongoDB Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">MongoDB</span>
+    </div>
+
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Django Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Django</span>
+    </div>
+
+    <!-- MySQL -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="MySQL Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">MySQL</span>
+    </div>
+
+    <!-- PostgreSQL -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="PostgreSQL Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">PostgreSQL</span>
+    </div>
+
+    <!-- Git -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Git Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Git</span>
+    </div>
+
+    <!-- GitHub -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="GitHub Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">GitHub</span>
+    </div>
+
+    <!-- AWS -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="AWS Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">AWS</span>
+    </div>
+
+    <!-- Docker -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Docker Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Docker</span>
+    </div>
+
+    <!-- Postman -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Postman Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Postman</span>
+    </div>
+
+    <!-- C -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="C Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">C</span>
+    </div>
+
+    <!-- Java -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Java Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Java</span>
+    </div>
+
+    <!-- Flutter -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="Flutter Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">Flutter</span>
+    </div>
+
+    <!-- AI -->
+    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+        alt="AI Logo"
+        loading="lazy"
+      />
+      <span class="text-xl">AI</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- Add this CSS to your stylesheet -->
+<style>
+  .skill-card {
+    background-color: #1a202c; /* Dark background for the card */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 
+  </style>
+
+  <!-- Blog Section -->
+<section id="blog" class="py-16">
+  <div class="container blog-container">
+    <h2 class="text-4xl font-bold text-center mb-12">My Blog</h2>
+
+    <!-- Admin Form to Add New Blog -->
+    <div id="adminForm" class="bg-gray-800 p-6 rounded-lg mb-6">
+      <h3 class="text-2xl mb-4">Create a New Blog</h3>
+      <form id="blogForm">
+        <input type="text" id="blogTitle" class="w-full p-2 mb-4 text-black" placeholder="Blog Title" required />
+        <textarea id="blogContent" class="w-full p-2 text-black" rows="4" placeholder="Write your blog here..." required></textarea>
+        <button type="submit" class="submit-btn mt-4">Post Blog</button>
+      </form>
+    </div>
+
+    <!-- Blog Post List -->
+    <div id="blogPosts">
+      <!-- Blog card will appear here dynamically -->
+    </div>
+  </div>
+  <Script>
     // Sample blog data
-    let blogs = [];
+let blogs = [];
 
-    // Function to display blogs
-    function displayBlogs() {
-      const blogContainer = document.getElementById('blogPosts');
-      blogContainer.innerHTML = ''; // Clear current content
+// Assuming a flag or variable that determines if the user is an admin
+const isAdmin = true; // Change this to false for non-admin users
 
-      blogs.forEach((blog, index) => {
-        const blogCard = `
-          <div class="blog-card">
-            <h3 class="text-3xl font-bold">${blog.title}</h3>
-            <p class="mt-4 mb-4">${blog.content}</p>
-            <div class="add-comment">
-              <textarea placeholder="Add feedback" class="comment-box" id="comment-${index}"></textarea>
-              <button onclick="addFeedback(${index})" class="submit-btn">Submit Feedback</button>
-            </div>
-            <h4 class="text-xl mt-6">Feedback:</h4>
-            <ul class="feedback-list" id="feedback-${index}">
-              ${blog.feedback.map(feedback => `<li class="feedback-item">${feedback}</li>`).join('')}
-            </ul>
-            <button onclick="deleteBlog(${index})" class="submit-btn bg-red-500 mt-4">Delete Blog</button>
-          </div>`;
-        blogContainer.innerHTML += blogCard;
-      });
-    }
+// Function to display blogs
+function displayBlogs() {
+  const blogContainer = document.getElementById('blogPosts');
+  blogContainer.innerHTML = ''; // Clear current content
 
-    // Function to add blog
-    document.getElementById('blogForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const blogTitle = document.getElementById('blogTitle').value;
-      const blogContent = document.getElementById('blogContent').value;
+  blogs.forEach((blog, index) => {
+    const blogCard = `
+      <div class="blog-card bg-gray-800 p-6 rounded-lg mb-6">
+        <h3 class="text-3xl font-bold">${blog.title}</h3>
+        <p class="mt-4 mb-4">${blog.content}</p>
+        <div class="add-comment">
+          <textarea placeholder="Add feedback" class="comment-box" id="comment-${index}"></textarea>
+          <button onclick="addFeedback(${index})" class="submit-btn">Submit Feedback</button>
+        </div>
+        <h4 class="text-xl mt-6">Feedback:</h4>
+        <ul class="feedback-list" id="feedback-${index}">
+          ${blog.feedback.map(feedback => `<li class="feedback-item">${feedback}</li>`).join('')}
+        </ul>
+        ${isAdmin ? `<button onclick="deleteBlog(${index})" class="submit-btn bg-red-500 mt-4">Delete Blog</button>` : ''}
+      </div>`;
+    blogContainer.innerHTML += blogCard;
+  });
+}
 
-      blogs.push({
-        title: blogTitle,
-        content: blogContent,
-        feedback: []
-      });
+// Function to add blog (visible only for admin)
+if (isAdmin) {
+  document.getElementById('blogForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const blogTitle = document.getElementById('blogTitle').value;
+    const blogContent = document.getElementById('blogContent').value;
 
-      // Clear form
-      document.getElementById('blogForm').reset();
-      displayBlogs();
+    blogs.push({
+      title: blogTitle,
+      content: blogContent,
+      feedback: []
     });
 
-    // Function to add feedback
-    function addFeedback(blogIndex) {
-      const commentBox = document.getElementById(`comment-${blogIndex}`);
-      const feedback = commentBox.value;
-      if (feedback.trim() === '') return;
-
-      blogs[blogIndex].feedback.push(feedback);
-      commentBox.value = ''; // Clear feedback box
-      displayBlogs();
-    }
-
-    // Function to delete blog
-    function deleteBlog(blogIndex) {
-      blogs.splice(blogIndex, 1);
-      displayBlogs();
-    }
-
-    // Initial Display of blogs
+    // Clear form
+    document.getElementById('blogForm').reset();
     displayBlogs();
-  </script>
+  });
+} else {
+  // Hide the admin form for non-admin users
+  document.getElementById('adminForm').style.display = 'none';
+}
+
+// Function to add feedback
+function addFeedback(blogIndex) {
+  const commentBox = document.getElementById(`comment-${blogIndex}`);
+  const feedback = commentBox.value;
+  if (feedback.trim() === '') return;
+
+  blogs[blogIndex].feedback.push(feedback);
+  commentBox.value = ''; // Clear feedback box
+  displayBlogs();
+}
+
+// Function to delete blog (visible only for admin)
+function deleteBlog(blogIndex) {
+  blogs.splice(blogIndex, 1);
+  displayBlogs();
+}
+
+// Initial Display of blogs
+displayBlogs();
+
+  </Script>
+</section>
+
 
      <!-- Contact Section -->
      <section id="contact" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans">
