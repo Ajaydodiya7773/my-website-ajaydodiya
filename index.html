@@ -8,313 +8,387 @@
     <script src="https://cdn.jsdelivr.net/npm/@heroicons/react@v1.0.6/solid/index.js"></script>
 
     <style>
-      /* Custom CSS for animations and additional styling */
-      .fade-in {
-        opacity: 0;
-        animation: fadeIn 1.5s ease-in forwards;
+            /* Custom CSS for animations and additional styling */
+            .fade-in {
+              opacity: 0;
+              animation: fadeIn 1.5s ease-in forwards;
+            }
+
+            @keyframes fadeIn {
+              to {
+                opacity: 1;
+              }
+            }
+
+            /* Custom Scroll Indicator */
+            .scroll-down {
+              position: absolute;
+              bottom: 50px;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+
+            .scroll-down span {
+              display: block;
+              margin-bottom: 10px;
+            }
+
+            .scroll-down .arrow {
+              border: solid white;
+              border-width: 0 2px 2px 0;
+              display: inline-block;
+              padding: 8px;
+              transform: rotate(45deg);
+            }
+
+            /* Slide-up animation */
+            .slide-up {
+              opacity: 0;
+              transform: translateY(30px);
+              animation: slideUp 1.5s ease-in forwards;
+            }
+
+            @keyframes slideUp {
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+
+
+          /* Basic Styles for Navbar */
+      .nav-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+
       }
 
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
+      .nav-item {
+        position: relative;
+        padding-bottom: 10px;
+        margin-right: 20px;
       }
 
-      /* Custom Scroll Indicator */
-      .scroll-down {
+      .nav-item:after {
+        content: '';
         position: absolute;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #FF00FF;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
       }
 
-      .scroll-down span {
-        display: block;
-        margin-bottom: 10px;
+      .nav-item:hover:after {
+        transform: scaleX(1);
+        transform-origin: left;
       }
 
-      .scroll-down .arrow {
-        border: solid white;
-        border-width: 0 2px 2px 0;
+      .switch-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .dark-mode-toggle {
         display: inline-block;
-        padding: 8px;
-        transform: rotate(45deg);
+        width: 40px;
+        height: 20px;
+        border-radius: 999px;
+        background-color: #555;
+        position: relative;
+        cursor: pointer;
       }
 
-      /* Slide-up animation */
-      .slide-up {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: slideUp 1.5s ease-in forwards;
+      .toggle-circle {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background-color: #FF00FF;
+        border-radius: 999px;
+        transition: all 0.3s ease;
       }
 
-      @keyframes slideUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
+      .dark-mode-toggle.active .toggle-circle {
+        transform: translateX(20px);
+      }
+
+      /* Dark Mode Switch Styles */
+      .dark-mode-text {
+        font-size: 14px;
+        color: white;
+      }
+
+      .contact-btn {
+        padding: 8px 16px;
+        background-color: #FF00FF;
+        color: white;
+        border-radius: 999px;
+        transition: background-color 0.3s ease;
+      }
+
+      .contact-btn:hover {
+        background-color: #ff33ff;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-item {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+
+        .switch-container {
+          margin-top: 10px;
+        }
+
+        .contact-btn {
+          margin-top: 10px;
         }
       }
 
-      
-    /* Basic Styles for Navbar */
-.nav-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  
-}
+      @media (max-width: 480px) {
+        .nav-container {
+          padding: 10px;
+        }
 
-.nav-item {
-  position: relative;
-  padding-bottom: 10px;
-  margin-right: 20px;
-}
+        .nav-item {
+          padding-bottom: 5px;
+        }
 
-.nav-item:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #FF00FF;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
+        .dark-mode-text {
+          font-size: 12px;
+        }
 
-.nav-item:hover:after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.switch-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dark-mode-toggle {
-  display: inline-block;
-  width: 40px;
-  height: 20px;
-  border-radius: 999px;
-  background-color: #555;
-  position: relative;
-  cursor: pointer;
-}
-
-.toggle-circle {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  background-color: #FF00FF;
-  border-radius: 999px;
-  transition: all 0.3s ease;
-}
-
-.dark-mode-toggle.active .toggle-circle {
-  transform: translateX(20px);
-}
-
-/* Dark Mode Switch Styles */
-.dark-mode-text {
-  font-size: 14px;
-  color: white;
-}
-
-.contact-btn {
-  padding: 8px 16px;
-  background-color: #FF00FF;
-  color: white;
-  border-radius: 999px;
-  transition: background-color 0.3s ease;
-}
-
-.contact-btn:hover {
-  background-color: #ff33ff;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-item {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .switch-container {
-    margin-top: 10px;
-  }
-
-  .contact-btn {
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-container {
-    padding: 10px;
-  }
-
-  .nav-item {
-    padding-bottom: 5px;
-  }
-
-  .dark-mode-text {
-    font-size: 12px;
-  }
-
-  .contact-btn {
-    padding: 6px 12px;
-  }
-}
+        .contact-btn {
+          padding: 6px 12px;
+        }
+      }
 
 
-    /* Dark Mode Switch Styles */
-    .dark-mode-text {
-      font-size: 14px;
-      color: white;
-    }
+          /* Dark Mode Switch Styles */
+          .dark-mode-text {
+            font-size: 14px;
+            color: white;
+          }
 
-    .contact-btn {
-      padding: 8px 16px;
-      background-color: #FF00FF;
-      color: white;
-      border-radius: 999px;
-      transition: background-color 0.3s ease;
-    }
+          .contact-btn {
+            padding: 8px 16px;
+            background-color: #FF00FF;
+            color: white;
+            border-radius: 999px;
+            transition: background-color 0.3s ease;
+          }
 
-    .contact-btn:hover {
-      background-color: #ff33ff;
-    }
+          .contact-btn:hover {
+            background-color: #ff33ff;
+          }
 
-    /* Dark Mode Styles */
-    .dark-mode {
-      background-color: #121212;
-      color: white;
-    }
+          /* Dark Mode Styles */
+          .dark-mode {
+            background-color: #121212;
+            color: white;
+          }
 
-    .blog-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+          .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+          }
 
-    .blog-card {
-      background-color: #1f2937;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
+          .blog-card {
+            background-color: #1f2937;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+          }
 
-    .comment-box {
-      border: 2px solid #6b7280;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      background-color: #fff;
-      color: black;
-    }
+          .comment-box {
+            border: 2px solid #6b7280;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            color: black;
+          }
 
-    .add-comment {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+          .add-comment {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
 
-    .feedback-list {
-      list-style-type: none;
-      padding-left: 0;
-    }
+          .feedback-list {
+            list-style-type: none;
+            padding-left: 0;
+          }
 
-    .feedback-item {
-      background-color: #f3f4f6;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      color: black;
-    }
+          .feedback-item {
+            background-color: #f3f4f6;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: black;
+          }
 
-    .submit-btn {
-      background-color: #FF00FF;
-      padding: 10px;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+          .submit-btn {
+            background-color: #FF00FF;
+            padding: 10px;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+          }
 
-    .submit-btn:hover {
-      background-color: #ff33ff;
-    }
+          .submit-btn:hover {
+            background-color: #ff33ff;
+          }
 
-    .skill-card {
-      background-color: #1a202c; /* Dark background for the card */
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 
-   
+          .skill-card {
+            background-color: #1a202c; /* Dark background for the card */
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow:
     </style>
   </head>
 
-  <body class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans leading-normal dark-mode">
-
-     <!-- Navbar -->
-  
-  <header class="flex justify-between p-5 items-center text-white border-b border-gray-700">
-    <div class="md:w-12  mt-10 md:mt-0"> <img src="assets/1847791 (1).webp" alt="AJAY" loading="lazy"></div>
-
-    <nav class="flex items-center">
-      <a href="#home" class="nav-item text-lg font-semibold">Home</a>
-      <a href="#projects" class="nav-item text-lg font-semibold">Projects</a>
-      <a href="#blog" class="nav-item text-lg font-semibold">Blog</a>
-      <a href="#contact" class="nav-item text-lg font-semibold">Contact</a>
-
-      <!-- Light/Dark Mode Toggle -->
-      <div class="switch-container ml-6">
-        <span class="dark-mode-text" id="modeText">Dark</span>
-        <div class="dark-mode-toggle active" id="darkModeToggle">
-          <div class="toggle-circle"></div>
-        </div>
-        <span class="dark-mode-text">Light</span>
+  <body
+    class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans leading-normal dark-mode"
+  >
+    <!-- Navbar -->
+    <header
+      class="flex justify-between items-center p-5 text-white border-b border-gray-700"
+    >
+      <!-- Logo -->
+      <div class="md:w-12 w-10 mt-10 md:mt-0">
+        <img src="assets/1847791 (1).webp" alt="AJAY" loading="lazy" />
       </div>
 
-      <!-- Contact Me Button -->
-      <a href="#contact" class="contact-btn ml-6">Contact Me</a>
-    </nav>
-  </header>
-  
-  <!-- Dark Mode Toggle Script -->
-  <script>
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    const modeText = document.getElementById('modeText');
+      <!-- Mobile Menu Toggle -->
+      <div class="block md:hidden">
+        <button id="mobileMenuToggle" class="focus:outline-none" title="button">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-    darkModeToggle.addEventListener('click', function () {
-      darkModeToggle.classList.toggle('active');
-      body.classList.toggle('dark-mode');
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-6">
+        <a href="#home" class="nav-item text-lg font-semibold">Home</a>
+        <a href="#projects" class="nav-item text-lg font-semibold">Projects</a>
+        <a href="#blog" class="nav-item text-lg font-semibold">Blog</a>
+        <a href="#contact" class="nav-item text-lg font-semibold">Contact</a>
 
-      // Change text based on mode
-      if (body.classList.contains('dark-mode')) {
-        modeText.textContent = 'Dark';
-      } else {
-        modeText.textContent = 'Light';
-      }
-    });
+        <!-- Light/Dark Mode Toggle -->
+        <div class="switch-container ml-6 flex items-center">
+          <span class="dark-mode-text" id="modeText">Dark</span>
+          <div class="dark-mode-toggle active" id="darkModeToggle">
+            <div class="toggle-circle"></div>
+          </div>
+          <span class="dark-mode-text ml-2">Light</span>
+        </div>
 
-    // Initially, keep it dark mode and text as 'Dark'
-    modeText.textContent = 'Dark';
-    body.classList.add('dark-mode');
-    darkModeToggle.classList.add('active');
-  </script>
+        <!-- Contact Me Button -->
+        <a href="#contact" class="contact-btn ml-6">Contact Me</a>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <nav
+        id="mobileMenu"
+        class="md:hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 hidden"
+      >
+        <div class="flex justify-end p-5">
+          <button
+            id="closeMobileMenu"
+            class="focus:outline-none"
+            title="button"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div
+          class="flex flex-col items-center justify-center space-y-8 mt-20 text-lg font-semibold"
+        >
+          <a href="#home" class="nav-item">Home</a>
+          <a href="#projects" class="nav-item">Projects</a>
+          <a href="#blog" class="nav-item">Blog</a>
+          <a href="#contact" class="nav-item">Contact</a>
+          <a href="#contact" class="contact-btn mt-6">Contact Me</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      const body = document.body;
+      const modeText = document.getElementById("modeText");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const closeMobileMenu = document.getElementById("closeMobileMenu");
+
+      // Toggle dark mode
+      darkModeToggle.addEventListener("click", function () {
+        darkModeToggle.classList.toggle("active");
+        body.classList.toggle("dark-mode");
+
+        // Change text based on mode
+        modeText.textContent = body.classList.contains("dark-mode")
+          ? "Dark"
+          : "Light";
+      });
+
+      // Initially keep dark mode
+      modeText.textContent = "Dark";
+      body.classList.add("dark-mode");
+      darkModeToggle.classList.add("active");
+
+      // Toggle mobile menu
+      mobileMenuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      closeMobileMenu.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    </script>
 
     <!-- Hero Section -->
     <section
@@ -338,7 +412,8 @@
         <a
           href="assets/Ajay's Resume-Rank(1).pdf"
           class="bg-white text-black py-2 px-4 rounded-full font-bold hover:bg-gray-200 transition"
-          loading="lazy">Download CV</a
+          loading="lazy"
+          >Download CV</a
         >
       </div>
 
@@ -360,7 +435,10 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans  py-16">
+    <section
+      id="about"
+      class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans py-16"
+    >
       <div class="container mx-auto px-5">
         <h2 class="text-4xl font-semibold text-center mb-12">About Me</h2>
         <p class="max-w-4xl mx-auto text-center">
@@ -379,12 +457,14 @@
           on users. When I’m not coding, you’ll find me experimenting with
           emerging tech and contributing to open-source projects.
         </p>
-
       </div>
     </section>
 
     <!-- Project Section -->
-    <section id="projects" class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans  py-16">
+    <section
+      id="projects"
+      class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans py-16"
+    >
       <div class="container mx-auto px-5">
         <h2 class="text-4xl font-bold text-center mb-12">My Projects</h2>
 
@@ -444,8 +524,8 @@
             />
             <h3 class="text-2xl font-semibold mb-2">WhatsApp Clone</h3>
             <p class="text-gray-300 mb-4">
-              A MERN-based Real Time Chat web application allowing users to
-              Chat and Communicate with friends & Family using websocket IO.
+              A MERN-based Real Time Chat web application allowing users to Chat
+              and Communicate with friends & Family using websocket IO.
             </p>
             <a href="#" class="text-red-500 font-bold hover:underline"
               >View Project</a
@@ -453,24 +533,24 @@
           </div>
           <!-- project-4 -->
 
-
           <div
-          class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-2xl transition"
-        >
-          <img
-            src="https://i.pinimg.com/564x/24/bb/a4/24bba45df97264b72cedf6910199f4a8.jpg"
-            alt="Project 3"
-            class="w-full h-40 object-cover rounded-md mb-4"
-            loading="lazy"
-          />
-          <h3 class="text-2xl font-semibold mb-2">Movie Magnet</h3>
-          <p class="text-gray-300 mb-4">
-            A React Based Movie Recommandtion website using IMDB Api & Tailwind Css for seamless UI with Upcoming Movies Trailers.
-          </p>
-          <a href="#" class="text-red-500 font-bold hover:underline"
-            >View Project</a
+            class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-2xl transition"
           >
-        </div>
+            <img
+              src="https://i.pinimg.com/564x/24/bb/a4/24bba45df97264b72cedf6910199f4a8.jpg"
+              alt="Project 3"
+              class="w-full h-40 object-cover rounded-md mb-4"
+              loading="lazy"
+            />
+            <h3 class="text-2xl font-semibold mb-2">Movie Magnet</h3>
+            <p class="text-gray-300 mb-4">
+              A React Based Movie Recommandtion website using IMDB Api &
+              Tailwind Css for seamless UI with Upcoming Movies Trailers.
+            </p>
+            <a href="#" class="text-red-500 font-bold hover:underline"
+              >View Project</a
+            >
+          </div>
 
           <!-- Add more projects as needed -->
         </div>
@@ -478,274 +558,329 @@
     </section>
 
     <!-- Education & Certification Section -->
-<section id="education" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans slide-up">
-  <h2 class="text-4xl font-bold text-center mb-12">
-    Education & Certifications
-  </h2>
+    <section
+      id="education"
+      class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans slide-up"
+    >
+      <h2 class="text-4xl font-bold text-center mb-12">
+        Education & Certifications
+      </h2>
 
-  <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <!-- Master of Computer Application (MCA) Card -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-semibold mb-2">
+            Master of Computer Application (MCA)
+          </h3>
+          <p class="text-lg">
+            Shri Vaishnav Institute of Management and Science, Indore (RGPV)
+          </p>
+          <p class="text-yellow-50 font-bold">2022-2024</p>
+        </div>
 
-    <!-- Master of Computer Application (MCA) Card -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-      <h3 class="text-2xl font-semibold mb-2">
-        Master of Computer Application (MCA)
-      </h3>
-      <p class="text-lg">
-        Shri Vaishnav Institute of Management and Science, Indore (RGPV)
-      </p>
-      <p class="text-yellow-50 font-bold">2022-2024</p>
-    </div>
+        <!-- Bachelor of Computer Application (BCA) Card -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-semibold mb-2">
+            Bachelor Of Computer Application (BCA)
+          </h3>
+          <p class="text-lg">Christian Eminent College, Indore (DAVV)</p>
+          <p class="text-yellow-50 font-bold">2019-2022</p>
+        </div>
 
-    <!-- Bachelor of Computer Application (BCA) Card -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-      <h3 class="text-2xl font-semibold mb-2">
-        Bachelor Of Computer Application (BCA)
-      </h3>
-      <p class="text-lg">
-        Christian Eminent College, Indore (DAVV)
-      </p>
-    </div>
-
-    <!-- Certifications Card -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg sm:col-span-2">
-      <h3 class="text-2xl font-semibold mb-4">Certifications</h3>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Edunet Foundation Virtual Internship (AI & Cloud)</li>
-        <li>IBM Cloud Developer Certification</li>
-        <li>AICTE Certified Internship Program</li>
-        <li>MERN Stack Certified from Crush IT Techno</li>
-        <li><a href="#" class="text-purple-400 hover:underline">Web Development - Infosys Springboard</a></li>
-        <li><a href="#" class="text-purple-400 hover:underline">Python with AI - Infosys Springboard</a></li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
+        <!-- Certifications Card -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg sm:col-span-2">
+          <h3 class="text-2xl font-semibold mb-4">Certifications</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Edunet Foundation Virtual Internship (AI & Cloud)</li>
+            <li>IBM Cloud Developer Certification</li>
+            <li>AICTE Certified Internship Program</li>
+            <li>MERN Stack Certified from Crush IT Techno</li>
+            <li>
+              <a href="#" class="text-purple-400 hover:underline"
+                >Web Development - Infosys Springboard</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-purple-400 hover:underline"
+                >Python with AI - Infosys Springboard</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <!-- Technical Skills Section -->
-    <!-- Technical Skills Section -->
-<section id="skills" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans slide-up">
-  <h2 class="text-4xl font-bold text-center mb-12">Technical Skills</h2>
-  <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
-    <!-- Skills with logos -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="JavaScript Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">JavaScript</span>
-    </div>
 
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Python Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Python</span>
-    </div>
+    <section
+      id="skills"
+      class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans slide-up"
+    >
+      <h2 class="text-4xl font-bold text-center mb-12">Technical Skills</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Skills with logos -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="JavaScript Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">JavaScript</span>
+        </div>
 
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="React Logo"
-      />
-      <span class="text-xl">React</span>
-    </div>
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Python Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Python</span>
+        </div>
 
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Node.js Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Node.js</span>
-    </div>
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="React Logo"
+          />
+          <span class="text-xl">React</span>
+        </div>
 
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="MongoDB Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">MongoDB</span>
-    </div>
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Node.js Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Node.js</span>
+        </div>
 
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Django Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Django</span>
-    </div>
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="MongoDB Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">MongoDB</span>
+        </div>
 
-    <!-- MySQL -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="MySQL Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">MySQL</span>
-    </div>
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Django Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Django</span>
+        </div>
 
-    <!-- PostgreSQL -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="PostgreSQL Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">PostgreSQL</span>
-    </div>
+        <!-- MySQL -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="MySQL Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">MySQL</span>
+        </div>
 
-    <!-- Git -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Git Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Git</span>
-    </div>
+        <!-- PostgreSQL -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="PostgreSQL Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">PostgreSQL</span>
+        </div>
 
-    <!-- GitHub -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="GitHub Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">GitHub</span>
-    </div>
+        <!-- Git -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Git Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Git</span>
+        </div>
 
-    <!-- AWS -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="AWS Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">AWS</span>
-    </div>
+        <!-- GitHub -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="GitHub Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">GitHub</span>
+        </div>
 
-    <!-- Docker -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Docker Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Docker</span>
-    </div>
+        <!-- AWS -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="AWS Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">AWS</span>
+        </div>
 
-    <!-- Postman -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Postman Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Postman</span>
-    </div>
+        <!-- Docker -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Docker Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Docker</span>
+        </div>
 
-    <!-- C -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="C Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">C</span>
-    </div>
+        <!-- Postman -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Postman Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Postman</span>
+        </div>
 
-    <!-- Java -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Java Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Java</span>
-    </div>
+        <!-- C -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="C Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">C</span>
+        </div>
 
-    <!-- Flutter -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="Flutter Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">Flutter</span>
-    </div>
+        <!-- Java -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Java Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Java</span>
+        </div>
 
-    <!-- AI -->
-    <div class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105">
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-        class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
-        alt="AI Logo"
-        loading="lazy"
-      />
-      <span class="text-xl">AI</span>
-    </div>
+        <!-- Flutter -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="Flutter Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">Flutter</span>
+        </div>
 
-  </div>
-</section>
-  
-  <!-- Blog Section -->
-<section id="blog" class="py-16">
-  <div class="container blog-container">
-    <h2 class="text-4xl font-bold text-center mb-12">My Blog</h2>
+        <!-- AI -->
+        <div
+          class="skill-card flex items-center space-x-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+            class="h-10 w-10 transition-transform duration-300 ease-in-out hover:scale-125"
+            alt="AI Logo"
+            loading="lazy"
+          />
+          <span class="text-xl">AI</span>
+        </div>
+      </div>
+    </section>
 
-    <!-- Admin Form to Add New Blog -->
-    <div id="adminForm" class="bg-gray-800 p-6 rounded-lg mb-6">
-      <h3 class="text-2xl mb-4">Create a New Blog</h3>
-      <form id="blogForm">
-        <input type="text" id="blogTitle" class="w-full p-2 mb-4 text-black" placeholder="Blog Title" required />
-        <textarea id="blogContent" class="w-full p-2 text-black" rows="4" placeholder="Write your blog here..." required></textarea>
-        <button type="submit" class="submit-btn mt-4">Post Blog</button>
-      </form>
-    </div>
+    <!-- Blog Section -->
+    <section id="blog" class="py-16">
+      <div class="container blog-container">
+        <h2 class="text-4xl font-bold text-center mb-12">My Blog</h2>
 
-    <!-- Blog Post List -->
-    <div id="blogPosts">
-      <!-- Blog card will appear here dynamically -->
-    </div>
-  </div>
-  <Script>
-    // Sample blog data
-let blogs = [];
+        <!-- Admin Form to Add New Blog -->
+        <div id="adminForm" class="bg-gray-800 p-6 rounded-lg mb-6">
+          <h3 class="text-2xl mb-4">Create a New Blog</h3>
+          <form id="blogForm">
+            <input
+              type="text"
+              id="blogTitle"
+              class="w-full p-2 mb-4 text-black"
+              placeholder="Blog Title"
+              required
+            />
+            <textarea
+              id="blogContent"
+              class="w-full p-2 text-black"
+              rows="4"
+              placeholder="Write your blog here..."
+              required
+            ></textarea>
+            <button type="submit" class="submit-btn mt-4">Post Blog</button>
+          </form>
+        </div>
 
-// Assuming a flag or variable that determines if the user is an admin
-const isAdmin = true; // Change this to false for non-admin users
+        <!-- Blog Post List -->
+        <div id="blogPosts">
+          <!-- Blog card will appear here dynamically -->
+        </div>
+      </div>
+      <script>
+        // Sample blog data
+        let blogs = [];
 
-// Function to display blogs
-function displayBlogs() {
-  const blogContainer = document.getElementById('blogPosts');
-  blogContainer.innerHTML = ''; // Clear current content
+        // Assuming a flag or variable that determines if the user is an admin
+        const isAdmin = true; // Change this to false for non-admin users
 
-  blogs.forEach((blog, index) => {
-    const blogCard = `
+        // Function to display blogs
+        function displayBlogs() {
+          const blogContainer = document.getElementById("blogPosts");
+          blogContainer.innerHTML = ""; // Clear current content
+
+          blogs.forEach((blog, index) => {
+            const blogCard = `
       <div class="blog-card bg-gray-800 p-6 rounded-lg mb-6">
         <h3 class="text-3xl font-bold">${blog.title}</h3>
         <p class="mt-4 mb-4">${blog.content}</p>
@@ -755,122 +890,160 @@ function displayBlogs() {
         </div>
         <h4 class="text-xl mt-6">Feedback:</h4>
         <ul class="feedback-list" id="feedback-${index}">
-          ${blog.feedback.map(feedback => `<li class="feedback-item">${feedback}</li>`).join('')}
+          ${blog.feedback
+            .map((feedback) => `<li class="feedback-item">${feedback}</li>`)
+            .join("")}
         </ul>
-        ${isAdmin ? `<button onclick="deleteBlog(${index})" class="submit-btn bg-red-500 mt-4">Delete Blog</button>` : ''}
+        ${
+          isAdmin
+            ? `<button onclick="deleteBlog(${index})" class="submit-btn bg-red-500 mt-4">Delete Blog</button>`
+            : ""
+        }
       </div>`;
-    blogContainer.innerHTML += blogCard;
-  });
-}
+            blogContainer.innerHTML += blogCard;
+          });
+        }
 
-// Function to add blog (visible only for admin)
-if (isAdmin) {
-  document.getElementById('blogForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const blogTitle = document.getElementById('blogTitle').value;
-    const blogContent = document.getElementById('blogContent').value;
+        // Function to add blog (visible only for admin)
+        if (isAdmin) {
+          document
+            .getElementById("blogForm")
+            .addEventListener("submit", function (e) {
+              e.preventDefault();
+              const blogTitle = document.getElementById("blogTitle").value;
+              const blogContent = document.getElementById("blogContent").value;
 
-    blogs.push({
-      title: blogTitle,
-      content: blogContent,
-      feedback: []
-    });
+              blogs.push({
+                title: blogTitle,
+                content: blogContent,
+                feedback: [],
+              });
 
-    // Clear form
-    document.getElementById('blogForm').reset();
-    displayBlogs();
-  });
-} else {
-  // Hide the admin form for non-admin users
-  document.getElementById('adminForm').style.display = 'none';
-}
+              // Clear form
+              document.getElementById("blogForm").reset();
+              displayBlogs();
+            });
+        } else {
+          // Hide the admin form for non-admin users
+          document.getElementById("adminForm").style.display = "none";
+        }
 
-// Function to add feedback
-function addFeedback(blogIndex) {
-  const commentBox = document.getElementById(`comment-${blogIndex}`);
-  const feedback = commentBox.value;
-  if (feedback.trim() === '') return;
+        // Function to add feedback
+        function addFeedback(blogIndex) {
+          const commentBox = document.getElementById(`comment-${blogIndex}`);
+          const feedback = commentBox.value;
+          if (feedback.trim() === "") return;
 
-  blogs[blogIndex].feedback.push(feedback);
-  commentBox.value = ''; // Clear feedback box
-  displayBlogs();
-}
+          blogs[blogIndex].feedback.push(feedback);
+          commentBox.value = ""; // Clear feedback box
+          displayBlogs();
+        }
 
-// Function to delete blog (visible only for admin)
-function deleteBlog(blogIndex) {
-  blogs.splice(blogIndex, 1);
-  displayBlogs();
-}
+        // Function to delete blog (visible only for admin)
+        function deleteBlog(blogIndex) {
+          blogs.splice(blogIndex, 1);
+          displayBlogs();
+        }
 
-// Initial Display of blogs
-displayBlogs();
+        // Initial Display of blogs
+        displayBlogs();
+      </script>
+    </section>
 
-  </Script>
-</section>
-
-
-     <!-- Contact Section -->
-     <section id="contact" class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans">
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-20 px-5 bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans"
+    >
       <h2 class="text-4xl font-bold text-center mb-12">Contact</h2>
       <div class="max-w-2xl mx-auto">
-          <!-- Updated form with method="POST" and action="/contact/" -->
-          <form method="POST" action="/contact/">
-              
-              <div class="mb-6">
-                  <label for="name" class="block mb-2">Name</label>
-                  <input type="text" id="name" name="name" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
-              </div>
-              <div class="mb-6">
-                  <label for="email" class="block mb-2">Email</label>
-                  <input type="email" id="email" name="email" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required>
-              </div>
-              <div class="mb-6">
-                  <label for="message" class="block mb-2">Message</label>
-                  <textarea id="message" name="message" rows="4" class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white" required></textarea>
-              </div>
-              <button type="submit" class="w-full p-3 bg-blue-500 rounded hover:bg-blue-600">Send Message</button>
-          </form>
+        <form method="POST" action="/contact/">
+          <div class="mb-6">
+            <label for="name" class="block mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <label for="email" class="block mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <label for="message" class="block mb-2">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full p-3 rounded bg-gray-800 border border-gray-700 text-white"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full p-3 bg-blue-500 rounded hover:bg-blue-600"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
       <script>
-        const form = document.querySelector('form');
-        
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();  // Prevent the form from submitting normally
-    
-            const formData = new FormData(form);  // Get form data
-    
-            try {
-                const response = await fetch('/contact/', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
-                    },
-                });
-    
-                if (response.ok) {
-                    // Handle success (e.g., show success message)
-                    alert('Thank you for contacting us!');
-                } else {
-                    // Handle failure (e.g., show error message)
-                    alert('There was an error submitting the form.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
-    </script>
-    
-  </section>
-  
+        const form = document.querySelector("form");
 
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault(); // Prevent the form from submitting normally
+
+          const formData = new FormData(form); // Get form data
+
+          try {
+            const response = await fetch("/contact/", {
+              method: "POST",
+              body: formData,
+              headers: {
+                "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]")
+                  .value,
+              },
+            });
+
+            if (response.ok) {
+              // Handle success (e.g., show success message)
+              alert("Thank you for contacting us!");
+            } else {
+              // Handle failure (e.g., show error message)
+              alert("There was an error submitting the form.");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        });
+      </script>
+    </section>
 
     <!-- Footer -->
-    <footer id="contact"  class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans text-center py-4">
+    <footer
+      id="contact"
+      class="bg-gradient-to-r from-black via-purple-900 to-black text-white font-sans text-center py-4"
+    >
       <p>
-        Follow On - <a href="https://github.com/Ajaydodiya7773" class="ml-2 hover:underline">GitHub</a> |
-        <a href="#" class="ml-2 hover:underline">Instagram</a> |
-        <a href="https://www.linkedin.com/in/ajay-dodiya-68a147231" class="ml-2 hover:underline">LinkedIn</a>
+        Follow On -
+        <a href="https://github.com/Ajaydodiya7773" class="ml-2 hover:underline"
+          >GitHub</a
+        >
+        | <a href="#" class="ml-2 hover:underline">Instagram</a> |
+        <a
+          href="https://www.linkedin.com/in/ajay-dodiya-68a147231"
+          class="ml-2 hover:underline"
+          >LinkedIn</a
+        >
       </p>
       <p class="mt-4">© 2024 Ajay Dodiya. All Rights Reserved.</p>
     </footer>
